@@ -189,32 +189,51 @@ const heartBtn = document.getElementById('heartBtn');
 const heartCountEl = document.getElementById('heartCount');
 
 // Unique API URL for your project
-const API_URL = 'https://api.counterapi.dev/v1/sadaqah_jariyah_unique_id_2026/hearts';
+const API_URL = 'https://api.counterapi.dev/v1/mahmoud_exam_2026_final/hearts';
 
 async function initHeartCounter() {
+    const heartCountEl = document.getElementById('heartCount');
+    if (!heartCountEl) return;
+
     // 1. Load from cache immediately
     const cachedCount = localStorage.getItem('heartCount');
     if (cachedCount) {
-        heartCountEl.innerText = parseInt(cachedCount).toLocaleString('ar-EG');
+        try {
+            heartCountEl.innerText = parseInt(cachedCount).toLocaleString('ar-EG');
+        } catch (e) {
+            heartCountEl.innerText = cachedCount;
+        }
+    } else {
+        heartCountEl.innerText = "٠"; // Default starting point
     }
 
     // 2. Check if user already clicked
     if (localStorage.getItem('heartClicked') === 'true') {
-        const icon = heartBtn.querySelector('.material-symbols-rounded');
-        icon.style.fontVariationSettings = "'FILL' 1";
-        icon.classList.add('text-red-500');
+        const icon = heartBtn?.querySelector('.material-symbols-rounded');
+        if (icon) {
+            icon.style.fontVariationSettings = "'FILL' 1";
+            icon.classList.add('text-red-500');
+        }
     }
 
     try {
         const response = await fetch(API_URL);
         if (!response.ok) throw new Error();
         const data = await response.json();
-        const count = data.count || 0;
+        
+        // Ensure count is a number
+        const count = Number(data.count) || 0;
         
         // Update UI and Cache
-        heartCountEl.innerText = count.toLocaleString('ar-EG');
+        try {
+            heartCountEl.innerText = count.toLocaleString('ar-EG');
+        } catch (e) {
+            heartCountEl.innerText = count;
+        }
         localStorage.setItem('heartCount', count);
     } catch (e) {
+        console.error("Heart Counter Load Error:", e);
+        // If API fails and no cache, keep it as "0"
         if (!cachedCount) heartCountEl.innerText = "٠";
     }
 }
