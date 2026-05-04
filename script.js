@@ -282,10 +282,17 @@ function hideLoader() {
 }
 
 // Start
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     renderExams();
     initHeartCounter();
     
-    // Hide loader after a short delay for smooth experience
-    setTimeout(hideLoader, 1000);
+    try {
+        // Wait for all fonts to be fully loaded
+        await document.fonts.ready;
+    } catch (e) {
+        console.log("Font loading failed, showing page anyway");
+    }
+    
+    // Hide loader after fonts are ready
+    setTimeout(hideLoader, 500);
 });
