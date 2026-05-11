@@ -1,10 +1,10 @@
 const exams = [
-    { id: 1, title: "نظم خبيرة", date: "2026-05-09T13:00:00", day: "السبت", time: "من ١ إلى ٣", halls: "211-213-215-314", color: "blue" },
-    { id: 2, title: "هندسة البرمجيات", date: "2026-05-13T13:00:00", day: "الأربعاء", time: "من ١ إلى ٣", halls: "211-213-215-112, 201", color: "green" },
-    { id: 3, title: "قواعد البيانات الحية", date: "2026-05-17T13:00:00", day: "الأحد", time: "من ١ إلى ٣", halls: "215-213-211-202, 416-418-422", color: "purple" },
-    { id: 4, title: "شبكات الحاسب", date: "2026-05-23T13:00:00", day: "السبت", time: "من ١ إلى ٣", halls: "201-202-211-213-215", color: "orange" },
-    { id: 5, title: "نظرية المترجمات", date: "2026-06-02T13:00:00", day: "الثلاثاء", time: "من ١ إلى ٣", halls: "211-213-215-115", color: "pink" },
-    { id: 6, title: "الرسم بالحاسب", date: "2026-06-13T13:00:00", day: "السبت", time: "من ١ إلى ٣", halls: "416-418-422-210", color: "blue" }
+    { id: 1, title: "Expert Systems", arabicTitle: "نظم خبيرة", date: "2026-05-09T13:00:00", day: "السبت", time: "من ١ إلى ٣", halls: "211-213-215-314", color: "blue" },
+    { id: 2, title: "Software Engineering", arabicTitle: "هندسة البرمجيات", date: "2026-05-13T13:00:00", day: "الأربعاء", time: "من ١ إلى ٣", halls: "211-213-215-112, 201", color: "green" },
+    { id: 3, title: "Multimedia Databases", arabicTitle: "قواعد البيانات الحية", date: "2026-05-17T13:00:00", day: "الأحد", time: "من ١ إلى ٣", halls: "215-213-211-202, 416-418-422", color: "purple" },
+    { id: 4, title: "Computer Networks", arabicTitle: "شبكات الحاسب", date: "2026-05-23T13:00:00", day: "السبت", time: "من ١ إلى ٣", halls: "201-202-211-213-215", color: "orange" },
+    { id: 5, title: "Compiler Theory", arabicTitle: "نظرية المترجمات", date: "2026-06-02T13:00:00", day: "الثلاثاء", time: "من ١ إلى ٣", halls: "211-213-215-115", color: "pink" },
+    { id: 6, title: "Computer Graphics", arabicTitle: "الرسم بالحاسب", date: "2026-06-13T13:00:00", day: "السبت", time: "من ١ إلى ٣", halls: "416-418-422-210", color: "blue" }
 ];
 
 const colorClasses = {
@@ -51,7 +51,8 @@ function renderExams() {
                 <div>
                     ${isFirst ? '<span class="text-[10px] font-bold bg-amber-100 text-amber-700 px-2 py-0.5 rounded-md mb-2 inline-block">البداية</span>' : ''}
                     ${isLast ? '<span class="text-[10px] font-bold bg-rose-100 text-rose-700 px-2 py-0.5 rounded-md mb-2 inline-block">الختام</span>' : ''}
-                    <h3 class="text-xl font-bold text-slate-800 dark:text-white">${exam.title}</h3>
+                    <h3 class="text-xl font-black text-slate-800 dark:text-white leading-tight">${exam.title}</h3>
+                    <p class="text-sm font-bold text-slate-500 dark:text-slate-400 mt-1">${exam.arabicTitle}</p>
                 </div>
                 <div class="text-left">
                     <span class="px-3 py-1 rounded-full text-sm font-bold ${badgeClasses[exam.color]}">
@@ -120,7 +121,10 @@ function updateCountdown(nextExam) {
         countdownBox.classList.add('hidden');
     } else {
         countdownBox.classList.remove('hidden');
-        document.getElementById('nextSubjectName').innerText = nextExam.title;
+        document.getElementById('nextSubjectName').innerHTML = `
+            <span class="block">${nextExam.title}</span>
+            <span class="text-xs opacity-80 mt-1 block">${nextExam.arabicTitle}</span>
+        `;
     }
 
     const updateAllTimers = () => {
