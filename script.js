@@ -1,7 +1,7 @@
 const exams = [
     { id: 1, title: "Expert Systems", arabicTitle: "نظم خبيرة", date: "2026-05-09T13:00:00", day: "السبت", time: "من ١ إلى ٣", halls: "211-213-215-314", color: "blue" },
     { id: 2, title: "Software Engineering", arabicTitle: "هندسة البرمجيات", date: "2026-05-13T13:00:00", day: "الأربعاء", time: "من ١ إلى ٣", halls: "211-213-215-112, 201", color: "green" },
-    { id: 3, title: "Multimedia Databases", arabicTitle: "قواعد البيانات الحية", date: "2026-05-17T13:00:00", day: "الأحد", time: "من ١ إلى ٣", halls: "215-213-211-202, 416-418-422", color: "purple" },
+    { id: 3, title: "Natural Language Processing", arabicTitle: "معالجة اللغات الطبيعية", date: "2026-05-17T13:00:00", day: "الأحد", time: "من ١ إلى ٣", halls: "215-213-211-202, 416-418-422", color: "purple" },
     { id: 4, title: "Computer Networks", arabicTitle: "شبكات الحاسب", date: "2026-05-23T13:00:00", day: "السبت", time: "من ١ إلى ٣", halls: "201-202-211-213-215", color: "orange" },
     { id: 5, title: "Compiler Theory", arabicTitle: "نظرية المترجمات", date: "2026-06-02T13:00:00", day: "الثلاثاء", time: "من ١ إلى ٣", halls: "211-213-215-115", color: "pink" },
     { id: 6, title: "Computer Graphics", arabicTitle: "الرسم بالحاسب", date: "2026-06-13T13:00:00", day: "السبت", time: "من ١ إلى ٣", halls: "416-418-422-210", color: "blue" }
